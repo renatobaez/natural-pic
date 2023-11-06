@@ -2,14 +2,7 @@ import { useContext } from 'react'
 import Context from '../context/Context'
 import IconHeart from './IconHeart'
 const Gallery = () => {
-  const { photos, savePhotos } = useContext(Context)
-
-  const setFavorito = (id) => {
-    const photoIndex = photos.findIndex((f) => f.id === id)
-    photos[photoIndex].liked = !photos[photoIndex].liked
-    savePhotos([...photos])
-  }
-
+  const { photos, setFavorito } = useContext(Context)
   return (
     <div className='gallery grid-columns-5 p-3'>
       {photos.map((photo, i) => (

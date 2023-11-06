@@ -18,10 +18,13 @@ const App = () => {
       alt: photo.alt,
       liked: false
     }))
-    savePhotos(photos)
-  }
-  const savePhotos = (photos) => {
     setPhotos(photos)
+  }
+
+  const setFavorito = (id) => {
+    const photoIndex = photos.findIndex((f) => f.id === id)
+    photos[photoIndex].liked = !photos[photoIndex].liked
+    setPhotos([...photos])
   }
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const App = () => {
   }, [])
   return (
     <>
-      <Context.Provider value={{ photos, savePhotos }}>
+      <Context.Provider value={{ photos, setFavorito }}>
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
